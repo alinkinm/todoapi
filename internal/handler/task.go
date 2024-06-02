@@ -18,7 +18,6 @@ import (
 	"github.com/go-playground/validator/v10"
 )
 
-//go:generate mockery --name=TaskRepository --output=mocks --outpkg=mocks
 type TaskRepository interface {
 	GetAllTasks(ctx context.Context, done string, date string, limit int, offset int) ([]*core.Task, error)
 	CreateTask(ctx context.Context, task *core.Task) (int, error)
