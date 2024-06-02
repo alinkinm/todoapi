@@ -1,0 +1,9 @@
+http:
+  port:
+    8080
+postgres:
+  name: postgres
+  password: postgres
+  db: todoapi
+  host: db
+  port: 5432

@@ -1,0 +1,198 @@
+basePath: /
+host: localhost:8080
+info:
+  contact: {}
+  description: http service
+  title: To do api description
+  version: "2.0"
+paths:
+  /tasks:
+    get:
+      description: Returns list of tasks
+      parameters:
+      - description: status filter
+        in: query
+        name: done
+        type: boolean
+      - description: date filter
+        in: query
+        name: date
+        type: string
+      - description: page capacity (in tasks)
+        in: query
+        name: pageSize
+        type: integer
+      - description: page number
+        in: query
+        name: page
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              items:
+                type: object
+              type: array
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get all created tasks
+      tags:
+      - tasks
+    post:
+      description: Create new task
+      parameters:
+      - description: header
+        in: body
+        name: header
+        required: true
+        schema:
+          type: string
+      - description: description
+        in: body
+        name: descr
+        required: true
+        schema:
+          type: string
+      - description: date YYYY-MM-DD
+        in: body
+        name: date
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create new task
+      tags:
+      - tasks
+  /tasks/{id}:
+    delete:
+      description: Delete task
+      parameters:
+      - description: task id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete task by id
+      tags:
+      - tasks
+    get:
+      description: Returns task if it exists
+      parameters:
+      - description: task id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get task by id
+      tags:
+      - tasks
+    patch:
+      description: Update 1+ properties of an existing task
+      parameters:
+      - description: task id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Update task by id
+      tags:
+      - tasks
+schemes:
+- http
+swagger: "2.0"
