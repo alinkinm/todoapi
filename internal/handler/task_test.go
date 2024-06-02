@@ -1,46 +1,45 @@
-// package handler
+package handler_test
 
 // import (
 // 	"testing"
 
 // 	"todoapi/internal/core"
+// 	"todoapi/internal/handler"
+// 	"todoapi/internal/handler/mocks"
 
 // 	"github.com/gofiber/fiber/v2"
-// 	"github.com/stretchr/testify/mock"
-
-// 	"context"
 // )
-
-// type MockTaskRepository struct {
-// 	mock.Mock
-// }
-
-// func (m *MockTaskRepository) GetAllTasks(ctx context.Context, done string, date string, limit int, offset int) ([]*core.Task, error) {
-// 	args := m.Called(ctx, done, date, limit, offset)
-// 	return args.Get(0).([]*core.Task), args.Error(1)
-// }
 
 // func TestTaskHandler_GetAllTasks(t *testing.T) {
 
-// 	mockRepo := new(MockTaskRepository)
-// 	mockRepo.On("GetAll").Return([]*core.Task{{ID: 1, Name: "Test Task"}}, nil)
-// 	taskHandler := NewTaskHandler(mockRepo)
+// 	mockRepo := new(mocks.MockTaskRepository)
+
+// 	mockRepo.On("GetAll").Return([]*core.Task{
+// 		{},
+// 	}, nil)
+
+// 	taskHandler := handler.NewTaskHandler(mockRepo)
 
 // 	type args struct {
 // 		ctx *fiber.Ctx
 // 	}
 // 	tests := []struct {
 // 		name    string
-// 		handler *TaskHandler
+// 		handler *handler.TaskHandler
 // 		args    args
 // 		wantErr bool
 // 	}{
 
 // 		{
-// 			name: "all tasks success",
-// 			handler: &TaskHandler{
-// 				taskRepository: mockRepo,
+// 			name:    "all tasks success",
+// 			handler: taskHandler,
+// 			args: args {
+// 				done:  "",
+// 				date:  "",
+// 				pageSize: "",
+// 				page:  "",
 // 			},
+
 // 		},
 
 // 		{
@@ -65,5 +64,3 @@
 // 		})
 // 	}
 // }
-
-package handler_test
